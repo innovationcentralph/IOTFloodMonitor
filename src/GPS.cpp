@@ -5,18 +5,20 @@ GPS::GPS(TinyGPSPlus *gpsObject, HardwareSerial *serial) {
   
   gpsSerial = serial;
   gpsSerial->begin(9600);
-  
-  if (!EEPROM.begin(1000)) {
-    Serial.println("Failed to initialise EEPROM");
-    Serial.println("Restarting...");
-    delay(1000);
-    
-    ESP.restart();
-  }
 
+  EEPROM.begin(500);
+  
+//  if (!EEPROM.begin(500)) {
+//    Serial.println("Failed to initialise EEPROM");
+//    Serial.println("Restarting...");
+//    delay(1000);
+//    
+//    ESP.restart();
+//  }
+//
   neoGPS = gpsObject;
-
-  
+//
+//  
 
   getSavedGPSParams(&gpsParams);
   
@@ -52,6 +54,14 @@ bool GPS::checkGPSUpdates(GPSParams *gps){
       if (neoGPS->location.isValid()){
         gps->lat = neoGPS->location.lat();
         gps->lng = neoGPS->location.lng();
+        
+        Serial.println("----------------");
+        Serial.print("Updated Latitude: ");
+        Serial.println(String(gps->lat, 6));
+        Serial.print("Updated Longitude: ");
+        Serial.println(String(gps->lng, 6));
+        Serial.println("----------------");
+        
         return true;    
       }
       else

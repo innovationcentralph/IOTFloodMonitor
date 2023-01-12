@@ -5,12 +5,10 @@
 #include "UserConfig.h"
 #include "SystemConfig.h"
 
-#include "src/Ultrasonic.h"
+#include "src/Ultrasonic/src/Ultrasonic.h"
 #include "src/HTTPSClient.h"
 #include "src/Wifi.h"
 #include "src/GPS.h"
-
-
 
 // Instance creation
 TinyGPSPlus gps;
@@ -21,7 +19,7 @@ GPS GPS(&gps, &gpsSerial);
 GPSParams freshGPSCoordinates;
 GPSParams savedGPSCoordinates;
 
-Wifi Wifi("admin", "admin1234");
+Wifi Wifi("324dBm", "randomPASS");
 HTTPSClient HTTPClient;
 
 Ultrasonic UltrasonicLevel(Proximity.Pins.Trigger, Proximity.Pins.Echo);
@@ -31,6 +29,7 @@ Ultrasonic UltrasonicLevel(Proximity.Pins.Trigger, Proximity.Pins.Echo);
 unsigned long int checkWaterLevelMillis = 0;
 unsigned long int datalogMillis = 0;
 unsigned long int gpsSavingMillis = 0;
+//String adminContactNumber  = "+639161886443"; 
 String adminContactNumber  = "+639159243835"; 
 
 void setup() {
@@ -51,6 +50,7 @@ void setup() {
   checkWaterLevelMillis = millis();
   datalogMillis = millis();
   gpsSavingMillis = millis();
+  
 }
 
 void loop() {
@@ -127,7 +127,8 @@ void loop() {
   if(FloatSwitch.SafetyLevel != FloatSwitch.PreviousSafetyLevel){
     FloatSwitch.PreviousSafetyLevel = FloatSwitch.SafetyLevel;
     String msg = "Flood Monitoring Alert! \nFlood Level: " + String(FloatSwitch.SafetyLevel);
-    SendSMS(msg, adminContactNumber);
+    //SendSMS(msg, adminContactNumber);
+    SendSMS(msg, "+639159243835");
   }
 
   /* Send sensor readings to server every X time */
@@ -141,27 +142,29 @@ void loop() {
       String httpsResponse = HTTPClient.SendGetRequest(URL, false);
       byte delimiter[2];
       delimiter[0] = httpsResponse.indexOf('%');
-      delimiter[1] = httpsResponse.indexOf('%', delimiter[0]);
+      delimiter[1] = httpsResponse.indexOf('%', delimiter[0] + 1);
 
-      String contactNumber = "+" + httpsResponse.substring(delimiter[0] + 1, delimiter[1]);
+      adminContactNumber = "+" + httpsResponse.substring(delimiter[0] + 1, delimiter[1]);
  
       // Get admin contact number
       Serial.println("HTTPS RESPONSE: " + httpsResponse);
-      Serial.println("FETCHED CONTACT NUMBER: " + contactNumber);
+      Serial.println("FETCHED CONTACT NUMBER: " + adminContactNumber);
     }
     datalogMillis = millis();
   }
 
   /* Check for GPS Module Updates */
   bool isGPSActive = GPS.checkGPSUpdates(&freshGPSCoordinates);
-  // Save GPS Coordinates every X time
-  if(millis() - gpsSavingMillis > EEPROM_SAVING_INTERVAL){
-    if(freshGPSCoordinates.lat != savedGPSCoordinates.lat || freshGPSCoordinates.lng != savedGPSCoordinates.lng){
-      // GPS Updated, Save to EEPROM 
-      GPS.saveGPSParams(&freshGPSCoordinates);
-      savedGPSCoordinates.lat = freshGPSCoordinates.lat;
-      savedGPSCoordinates.lng = freshGPSCoordinates.lng;
-      gpsSavingMillis = millis();
+  if(isGPSActive){
+    // Save GPS Coordinates every X time
+    if(millis() - gpsSavingMillis > EEPROM_SAVING_INTERVAL){
+      if(freshGPSCoordinates.lat != savedGPSCoordinates.lat || freshGPSCoordinates.lng != savedGPSCoordinates.lng){
+        // GPS Updated, Save to EEPROM 
+        GPS.saveGPSParams(&freshGPSCoordinates);
+        savedGPSCoordinates.lat = freshGPSCoordinates.lat;
+        savedGPSCoordinates.lng = freshGPSCoordinates.lng;
+        gpsSavingMillis = millis();
+      }
     }
   }
   

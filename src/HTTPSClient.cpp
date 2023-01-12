@@ -37,14 +37,15 @@ String HTTPSClient::SendGetRequest(String URL, bool secure){
             return payload;
           }
         } else {
-          return "ERROR";
+          
           Serial.printf("[HTTPS] GET... failed, error: %s\n", https.errorToString(httpCode).c_str());
+          return "ERROR";
         }
   
         https.end();
       } else {
-        return "ERROR";
         Serial.printf("[HTTPS] Unable to connect\n");
+        return "ERROR";
       }
 
       // End extra scoping block
@@ -52,8 +53,8 @@ String HTTPSClient::SendGetRequest(String URL, bool secure){
   
     delete client;
   } else {
-    return "ERROR";
     Serial.println("Unable to create client");
+    return "ERROR";
   }
 }
   
