@@ -5,23 +5,19 @@ GPS::GPS(TinyGPSPlus *gpsObject, HardwareSerial *serial) {
   
   gpsSerial = serial;
   gpsSerial->begin(9600);
-
-  EEPROM.begin(500);
-  
-//  if (!EEPROM.begin(500)) {
-//    Serial.println("Failed to initialise EEPROM");
-//    Serial.println("Restarting...");
-//    delay(1000);
-//    
-//    ESP.restart();
-//  }
-//
   neoGPS = gpsObject;
-//
-//  
 
-  getSavedGPSParams(&gpsParams);
-  
+}
+
+void GPS::init(){
+    if (!EEPROM.begin(500)) {
+      Serial.println("Failed to initialise EEPROM");
+      Serial.println("Restarting...");
+      delay(1000);
+      
+      ESP.restart();
+    }
+    getSavedGPSParams(&gpsParams);
 }
 
 void GPS::getSavedGPSParams(GPSParams *gps){

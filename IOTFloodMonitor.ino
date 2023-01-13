@@ -5,10 +5,10 @@
 #include "UserConfig.h"
 #include "SystemConfig.h"
 
-#include "src/Ultrasonic/src/Ultrasonic.h"
-#include "src/HTTPSClient.h"
-#include "src/Wifi.h"
-#include "src/GPS.h"
+#include "Ultrasonic.h"
+#include "HTTPSClient.h"
+#include "Wifi.h"
+#include "GPS.h"
 
 // Instance creation
 TinyGPSPlus gps;
@@ -45,6 +45,8 @@ void setup() {
 
   Wifi.connect();
 
+  GPS.init();
+  Serial.println("GPS Initiated");
   GPS.getSavedGPSParams(&savedGPSCoordinates);
 
   checkWaterLevelMillis = millis();

@@ -28,6 +28,7 @@ class GPS{
 
   public:
     GPS(TinyGPSPlus *gpsObject, HardwareSerial *serial);
+    void init();
     void getSavedGPSParams(GPSParams *gps);
     void saveGPSParams(GPSParams *gps);
     bool checkGPSUpdates(GPSParams *gps);
