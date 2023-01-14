@@ -66,6 +66,7 @@ bool GPS::checkGPSUpdates(GPSParams *gps){
       }
     }
   }
+  return false;
 }
 
   

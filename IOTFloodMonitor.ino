@@ -140,7 +140,7 @@ void loop() {
       GPS.getSavedGPSParams(&savedGPSCoordinates);
       
       Serial.println("SENDING DATA TO WEB");
-      String URL = "https://mactechph.com/iotfloodmonitoring/resources/data/sensorlog.php?u=" + String(Proximity.Value) + "&f=" + String(FloatSwitch.SafetyLevel) + "&lat=" + savedGPSCoordinates.lat + "&lng=" + savedGPSCoordinates.lng;
+      String URL = "https://mactechph.com/iotfloodmonitoring/resources/data/sensorlog.php?u=" + String(Proximity.Value) + "&f=" + String(FloatSwitch.SafetyLevel) + "&lat=" + savedGPSCoordinates.lat + "&lng=" + savedGPSCoordinates.lng + "&id=" + DEVICE_ID;
       String httpsResponse = HTTPClient.SendGetRequest(URL, false);
       byte delimiter[2];
       delimiter[0] = httpsResponse.indexOf('%');

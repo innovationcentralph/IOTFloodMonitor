@@ -20,6 +20,7 @@ String HTTPSClient::SendGetRequest(String URL, bool secure){
       HTTPClient https;
   
       Serial.print("[HTTPS] begin...\n");
+      Serial.println("URL: " + URL);
       if (https.begin(*client, URL)) {  // HTTPS
         Serial.print("[HTTPS] GET...\n");
         // start connection and send HTTP header
