@@ -1,0 +1,302 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.content.map {
+  height: calc(100vh - 64px);
+  margin-top: 0;
+    padding: 0;
+}
+
+.caret-back, .caret-forward {
+  vertical-align: middle;
+  display: inline;
+  /* line-height: 100px; */
+}
+
+.collapse-menu {
+  width: 20px;
+  height: 100px;
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  background-color: white;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  cursor: pointer;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.collapse-menu:hover {
+  background: #f1f1f1;
+}
+
+.right-nav {
+  width: 0px;
+  /* position: absolute; */
+  position: fixed;
+  top: 64px;
+  height: 100%;
+  right: 0;
+  background-color: #f7f7f7;
+  z-index: 4;
+  box-shadow: 1px 0 20px rgb(0 0 0 / 8%);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.search-icon {
+  position: absolute;
+  left: 25px;
+  top: 28px;
+  color: #656565;
+}
+#infowindow {
+  text-align: left;
+}
+input.search-box {
+  width: 100%;
+  border-radius: 5px;
+  margin: 2px;
+  box-sizing: border-box;
+  padding-left: 30px;
+  border: 0.5px solid rgb(153 153 153 / 50%);
+  box-shadow: 3px 1px 5px 1px rgb(0 0 0 / 20%);
+}
+input.search-box:focus {
+  padding-left: 30px;
+}
+.search-container form {
+  margin: 15px;
+}
+
+
+.filter-buttons {
+  display: flex;
+  padding: 10px 3px;
+}
+button.filter-button {
+  padding: 7px;
+  width: 50%;
+  display: inline-block;
+  /* box-sizing: border-box; */
+  border-radius: 5px;
+  background: white;
+  border: 0.5px solid #000000;
+  cursor: pointer;
+
+}
+button.filter-button.selected, button.filter-button:hover {
+  background-color: #011627;
+  color: white;
+}
+button.filter-button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+button.filter-button:nth-child(2) {
+  border-radius: 0 5px 5px 0;
+}
+.entries-section {
+  overflow-y: auto;
+  height: calc(100vh - 160px);
+  margin-right: 15px;
+  margin-left: 15px;
+}
+ul#userList {
+  margin-top: 0;
+}
+.entry-item {
+  padding: 7px;
+  display: block;
+  position: relative;
+}
+.entry-item input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.entry-item .checkmark:after {
+  /* left: 5px;
+  top: 2px; */ 
+  margin-left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid #3080ff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+label.item-label {
+  position: relative;
+  top: -4px;
+  cursor: pointer;
+}
+
+.entry-item:hover {
+    background: #c6c6c6;
+    color: white;
+    cursor: pointer;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.entry-item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  /* position: absolute;
+  top: 7px;
+  left: 7px; */
+    display: inline-block;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid #828282;
+  width: 20px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.person {
+  font-size: 170%;
+  display: inline-block;    
+  top: 2px;
+  position: relative;
+}
+#map{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    /* margin-left: 29%; */
+}
+.nicebox {
+  position: absolute;
+  text-align: center;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 13px;
+  z-index: 5;
+  box-shadow: 0 4px 6px -4px #333;
+  padding: 5px 10px;
+  background: white;
+  background: linear-gradient(to bottom, white 0%, whitesmoke 100%);
+  border: #e5e5e5 1px solid;
+}
+
+#controls {
+  top: 150px;
+  /* left: 10px; */
+  right: 10px;
+  width: 23%;
+  height: 45px;
+}
+
+#data-box {
+  /* top: 10px; */
+  /* left: 500px; */
+  
+  /* bottom: 150px;
+  left: 30px;
+  height: 45px;
+  line-height: 45px;
+  display: none; */
+
+      /* top: 10px; */
+      bottom: 5%;
+      left: 10px;
+      height: 45px;
+      line-height: 45px;
+      display: none;
+}
+
+
+#summary {
+  /* top: 10px; */
+  /* left: 500px; */
+  
+  /* bottom: 150px;
+  left: 30px;
+  height: 45px;
+  line-height: 45px;
+  display: none; */
+
+      /* top: 10px; */
+        /* top: 10px; */
+        /* left: 500px; */
+        /* top: 10px; */
+        top: 40%;
+        bottom: 5%;
+        left: 10px;
+        height: 150px;
+        line-height: 30px;
+        display: block;
+        text-align: left;
+}
+
+h1.summary-title {
+  margin: 5px 0;
+}
+
+#census-variable {
+  width: 100%;
+  height: 20px;
+}
+
+#legend {
+  display: flex;
+  display: -webkit-box;
+  padding-top: 7px;
+}
+
+.color-key {
+  background: linear-gradient(
+    to left,
+    #db4639 0%,
+    #db7f29 17%,
+    #d1bf1f 33%,
+    #92c51b 50%,
+    #48ba17 67%,
+    #12ab24 83%,
+    #0f9f59 100%
+  );
+  flex: 1;
+  -webkit-box-flex: 1;
+  margin: 0 5px;
+  text-align: left;
+  font-size: 1em;
+  line-height: 1em;
+}
+
+#data-value, #activeCases-value,  #deathCases-value,#totalCases-value {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#data-label, #activeCases-label,  #deathCases-label,#totalCases-label{
+  font-size: 2em;
+  font-weight: normal;
+  padding-right: 10px;
+}
+
+#data-label:after, #activeCases-label:after,  #deathCases-label:after,#totalCases-label:after {
+  content: ":";
+}
+
+#data-caret {
+  margin-left: -5px;
+  display: none ;
+  font-size: 14px;
+  width: 14px;
+}

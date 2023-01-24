@@ -1,0 +1,86 @@
+
+  .chart-holder {
+    width: 100%;
+    margin: 0 10px; 
+    /*margin: 0 10px 20px 10px;*/
+    /*padding: 10px;*/
+    
+    margin: 0 0 20px;
+    padding: 10px 0;
+    /* height: 500px; */
+    
+    height: calc(100vh - (2.5rem + 4rem + 48px));
+    min-height: 345px;
+}
+.chartDiv {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.infos {
+    margin-left: 7%;
+    vertical-align: middle;
+    text-align: left;
+    justify-content: center;
+    display: inline-block;
+    padding: 30px;
+    background: #FBF9F9;
+    border: 1px dashed #38C9C9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    line-height: 100%;
+    font-size: 100%;
+    font-weight: 600;
+    max-width: 23%;
+}
+
+
+/* .chartholder, #TempLevel{
+  
+    width: 100%;
+    margin: 10px;
+    height: 70vh;
+    max-width: 100%;
+    border-radius: 5px;
+  } */
+
+/* p.info {
+    color: #38c9c9;
+} */
+
+
+
+.color-1 {
+    color: #ed3434;
+}
+
+.color-2 {
+    color: #38C9C9;
+}
+.color-3 {
+    color: #49c920;
+}
+
+.color-4 {
+    color: #c80be2;
+}
+
+
+.border-1 {
+    border: 1px dashed #ed3434;
+}
+
+.border-2 {
+    border: 1px dashed #38C9C9;
+}
+.border-3 {
+    border: 1px dashed #49c920;
+}
+.border-4 {
+    border: 1px dashed #c80be2;
+}
